@@ -1,14 +1,18 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const bodyParser =require('body-parser')
 const config = require('./config/dev')
 const FakeDb = require('./fake-db')
 
 const productRoutes = require('./routes/products')
+const userRoutes = require('./routes/users')
+
 
 mongoose.set('strictQuery', false);
 mongoose.connect(config.DB_URI, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    // useCreateIndex:true
 }).then(
     () => {
         const fakeDb = new FakeDb()
@@ -18,8 +22,10 @@ mongoose.connect(config.DB_URI, {
 
 
 const app = express()
+app.use(bodyParser.json())
 
-app.use('/api/v1/products',productRoutes)
+app.use('/api/v1/products', productRoutes)
+app.use('/api/v1/users', userRoutes)
 
 // app.get('/products', function (req, res) {
 //     res.json({ 'success': true })
