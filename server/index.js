@@ -29,6 +29,14 @@ app.use(bodyParser.json())
 app.use('/api/v1/products', productRoutes)
 app.use('/api/v1/users', userRoutes)
 
+if (process.env.NODE_ENV === 'production') {
+    const appPath = path.join(__dirname, '..', 'dist', 'reservation-app')
+    app.use(express.static(appPath))
+    app.get("*", function (req, res) {
+        res.sendFile(path.resolve(appPath, 'index.html'))
+    })
+}
+
 const PORT = process.env.PORT || '3001'
 
 app.listen(PORT, function () {
