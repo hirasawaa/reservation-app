@@ -9,6 +9,7 @@ const FakeDb = require('./fake-db')
 
 const productRoutes = require('./routes/products')
 const userRoutes = require('./routes/users')
+const path =require('path')
 
 mongoose.set('strictQuery', false);
 mongoose.connect(config.DB_URI, {
