@@ -23,11 +23,11 @@ exports.authMuddleware = function (req, res, next) {
 
         User.findById(decodedToken.userId, function (err, foundUser) {
             if (err) {
-                return res.status(401).send({ errors: [{ title: 'Not Authorized', detail: 'Invalid token!' }] })
+                return res.status(401).send({ errors: [{ title: 'Not Authorized', detail: 'We can not find user!' }] })
             }
             
             if (!foundUser) {
-                return res.status(401).send({ errors: [{ title: 'Not Authorized', detail: 'Invalid token!' }] })
+                return res.status(401).send({ errors: [{ title: 'Not Authorized', detail: 'User does not exit!' }] })
             }
             next()
         })

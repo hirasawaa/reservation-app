@@ -3,11 +3,6 @@ import { AuthService } from '../shared/auth.service';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 
 
-
-
-
-
-
 @Injectable()
 export class AuthGuard {
 
